@@ -61,37 +61,16 @@ hints = {
 #---------------------------------------
 
 def select_random_question():
-    global temp,user_answer,answer
+    global temp,user_answer,correct_answer,category
     category = input("Choose S for Science or H for History: ")
     temp = random.randint(1, 9)
     if category.upper() == "S":
-        question, answer = questions["Science"][temp - 1]
+        question, correct_answeranswer = questions["Science"][temp - 1]
     elif category.upper() == "H":
-        question, answer = questions["History"][temp - 1]
+        question, correct_answeranswer = questions["History"][temp - 1]
     else:
         print("Invalid category choice.")
-        return
-
-    print(question)
-    user_answer = input("Please enter your answer: ")
-    print("Correct!" if user_answer.lower() == answer.lower() else f"Wrong! The correct answer is {answer}.")
-
-
-    """
-    Selects a random question from the specified category.
-
-    Parameters:
-    - category (str): The category from which to select a question.
-
-    Returns:
-    - tuple: A tuple containing the selected question (str) and its corresponding answer (str).
-    """
-    #------------------------
-    # Add your code here
-    #------------------------
-    #------------------------
-
-#---------------------------------------
+        return question, correct_answer
 
 def check_answer(player_answer, correct_answer):
     """
@@ -142,14 +121,13 @@ def display_question_and_accept_answer(question):
     - str: The player's answer to the question.
     """
     #------------------------
-    # Add your code here
+    print(question)
+    answer = input("Enter your answer: ")
+    return answer
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
     #------------------------
 
-#---------------------------------------
-
-def provide_hint(category, question):
+def provide_hint(category, question,temp):
     """
     Provides a hint for the given question based on its category.
 
@@ -161,14 +139,13 @@ def provide_hint(category, question):
     - str: The hint for the given question.
     """
     #------------------------
-    # Add your code here
+    if category.upper() == "S":
+        print("Hint: ", hints["Science"][temp - 1])
+    elif category.upper() == "H":
+        print("Hint: ", hints["History"][temp - 1])
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
     #------------------------
-
-#---------------------------------------
-
-def display_correct_answer(correct_answer):
+def display_correct_answer(answer, correct_answer):
     """
     Displays the correct answer if the player's answer is incorrect.
 
@@ -179,13 +156,10 @@ def display_correct_answer(correct_answer):
     - None
     """
     #------------------------
-    # Add your code here
+    if answer != correct_answer:
+        print("Incorrect! the correct ans is", correct_answer)
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
     #------------------------
-
-#---------------------------------------
-
 
 
 
